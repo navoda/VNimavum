@@ -69,6 +69,20 @@ Two parts:
 - Backend module names: catalog, inventory, sales, payments, orders, delivery,
   currency, customers, sync, accounts. Frontend: owner-app/, storefront/,
   shared/ui, shared/api-client.
+- Data model answers (2026-10-11): categories nest, one category per product.
+  Variant types are size (fixed list defined per category), colour/pattern
+  (free text) and material (free text). One price per variant, set by the
+  owner in LKR only; other currencies are display-only conversions for
+  customers. Generated SKU per variant, printable as a barcode. Images per
+  product, optionally per variant. Cost price recorded on stock received; no
+  supplier records. Stock movement reasons: received, sold in store, sold
+  online, returned, damaged, count correction. No split payments; discounts or
+  promotion codes allowed at checkout. Receipts on screen and printable, email
+  optional. Opening cash per day is optional. Online orders require name,
+  phone and email; address only for delivery. Delivery fees per district; the
+  owner chooses available districts and sets an estimated delivery time.
+  Order statuses: placed, paid, packed, shipped, collected, delivered,
+  cancelled, refunded.
 
 ## Open decisions
 

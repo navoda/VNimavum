@@ -44,6 +44,7 @@ Two parts:
 - Database: PostgreSQL.
 - Both apps are hosted on one small server.
 - Planned folders: `backend/` for Django, `storefront/` for Next.js.
+- Architecture and data model: [docs/architecture.md](docs/architecture.md).
 - Online payments: Visa, Mastercard, bank transfer, PayPal.
 - In-store payments: cash, bank transfer with a reference, and a bank card
   reader connected later. The owner app shows the day's cash total in the shop.
@@ -99,8 +100,6 @@ Two parts:
 - Owner inbox in an `inbox` module: threaded website chats, message-style (the
   customer gets an email when the owner replies, no live chat yet). Guests can
   chat with name and email. Customers can attach images.
-- The full data model draft (tables and fields) is in the architecture doc:
-  https://claude.ai/code/artifact/f93f7510-71b9-41d7-b597-48563b35dd81
 
 ## Open decisions
 
@@ -114,7 +113,20 @@ Ask about these before working on anything that depends on them:
 None agreed yet. Add them here as they are decided (code style, formatting,
 tests, commit messages, branch naming).
 
+Current setup, chosen by Claude within "current long-term-support versions":
+Python 3.13, Django 5.2 LTS, Django REST Framework 3.16+, psycopg 3,
+PostgreSQL 17 (Docker), pip with `backend/requirements.txt`. Each backend module
+is a top-level Django app in `backend/`; the Django project package is
+`backend/config/`. Money fields are `DecimalField(max_digits=12,
+decimal_places=2)` in LKR, named `*_lkr`.
+
 ## Commands
 
-None yet. Add setup, run, test and lint commands here once the projects are
-scaffolded.
+Run from `backend/` with the virtual environment active:
+
+- Start the database (from the repository root): `docker compose up -d`
+- Install: `pip install -r requirements.txt`
+- Migrate: `python manage.py migrate`
+- Run: `python manage.py runserver` (admin at http://localhost:8000/admin/)
+- Test: `python manage.py test`
+- New migrations after model changes: `python manage.py makemigrations`

@@ -92,8 +92,15 @@ Two parts:
   Estimated delivery time per district is a range of days. Field names as
   drafted in the architecture doc.
 - Sewing jobs (customer brings their own material) are in-store service
-  orders, not products. A threaded owner inbox holds website chats. Details are
-  pending in the architecture doc (questions 24 to 31).
+  orders in a `services` module, not products. Payment is an optional advance
+  plus the balance, or one payment at collection. Jobs work offline like
+  in-store sales. Shop stock used on a job (thread, zips) is recorded as stock
+  movements. Receipts reuse the same shared receipt code as sales.
+- Owner inbox in an `inbox` module: threaded website chats, message-style (the
+  customer gets an email when the owner replies, no live chat yet). Guests can
+  chat with name and email. Customers can attach images.
+- The full data model draft (tables and fields) is in the architecture doc:
+  https://claude.ai/code/artifact/f93f7510-71b9-41d7-b597-48563b35dd81
 
 ## Open decisions
 

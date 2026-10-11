@@ -52,22 +52,30 @@ Two parts:
 - Delivery within Sri Lanka with fees shown, plus in-store pickup. Keep the
   design open to overseas delivery later.
 - Storefront supports both guest checkout and customer accounts.
-- Multiple currencies, converted using an online rate service.
+- Multiple currencies, converted using an online rate service updated daily.
+  Primary currency: LKR.
 - English only for now. No tax for now.
-- Development: open and run in VS Code on localhost. Production hosting on a
-  private server later. Docker may be used if it is better for local hosting.
+- Development: open and run in VS Code on localhost. PostgreSQL runs in
+  Docker; Django and the apps run directly from VS Code. Production hosting on
+  a private server later.
+- Versions: use current long-term-support versions of the stack.
+- One in-store device. Only in-store sales must work offline; everything else
+  may require internet.
+- When the last unit of a variant sells online, the owner app shows a
+  notification. Overselling during an outage is accepted; the owner resolves
+  it with the customer (for example, a refund).
+- Online orders always require customer contact information.
+- Backend module names: catalog, inventory, sales, payments, orders, delivery,
+  currency, customers, sync, accounts. Frontend: owner-app/, storefront/,
+  shared/ui, shared/api-client.
 
 ## Open decisions
 
 Ask about these before working on anything that depends on them:
 
-- Online card payment provider (gateway).
-- Which currency rate service to use.
-- Python, Django, Node and Next.js versions; package managers.
-- How Docker is used locally (database only, or everything).
-- Remaining owner app decisions in the architecture doc: overselling during an
-  outage, number of checkout devices, folder and module names, what works
-  offline.
+- Online card payment provider (gateway): keep open; the owner will research
+  options later.
+- Which currency rate service to use (Frankfurter recommended).
 
 ## Conventions
 

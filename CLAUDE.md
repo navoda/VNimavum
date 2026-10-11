@@ -53,7 +53,8 @@ Two parts:
   design open to overseas delivery later.
 - Storefront supports both guest checkout and customer accounts.
 - Multiple currencies, converted using an online rate service updated daily.
-  Primary currency: LKR.
+  Primary currency: LKR. Rate service: Frankfurter (https://frankfurter.dev/),
+  which carries Central Bank of Sri Lanka rates; the owner can override a rate.
 - English only for now. No tax for now.
 - Development: open and run in VS Code on localhost. PostgreSQL runs in
   Docker; Django and the apps run directly from VS Code. Production hosting on
@@ -75,7 +76,6 @@ Ask about these before working on anything that depends on them:
 
 - Online card payment provider (gateway): keep open; the owner will research
   options later.
-- Which currency rate service to use (Frankfurter recommended).
 
 ## Conventions
 

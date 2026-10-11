@@ -31,8 +31,13 @@ Three parts:
 ## Agreed decisions
 
 - Backend and owner interface: Django with Django REST Framework.
-- Owner screens use the Django admin wherever it is good enough, keeping custom
-  code to a minimum.
+- Owner daily work (in-store checkout, stock, orders) happens in an owner app
+  installed on the shop's Windows PC as an installable web app (PWA). It must
+  keep working when the internet is down: it keeps a local copy and an outbox of
+  sales and stock changes, and syncs to Django when online. The app asks the
+  browser for persistent storage. Django admin stays as a back-office fallback.
+- UI stays minimal for now; a unified look across the apps comes later.
+- The codebase is split into modules for reuse and maintainability.
 - Customer storefront: Next.js (React).
 - The storefront talks to Django only through the REST API. The owner never uses
   the React app.
@@ -44,8 +49,6 @@ Three parts:
 
 Ask about these before working on anything that depends on them:
 
-- How "offline" in-store checkout must be: does it need to work without an
-  internet connection, or only without the customer being online?
 - Payment methods for online orders, and which payment provider.
 - Payment methods recorded for in-store sales (cash, card, other).
 - Product data: variants (size, colour, material), images, categories.

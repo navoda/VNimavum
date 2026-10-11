@@ -1,0 +1,16 @@
+# Local development database. Django and the apps run directly from VS Code.
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: vnimavum
+      POSTGRES_USER: vnimavum
+      POSTGRES_PASSWORD: vnimavum
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

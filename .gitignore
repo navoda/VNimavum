@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local settings and uploads
+.env
+backend/media/
+backend/staticfiles/
+
+# Editors and OS
+.DS_Store
+Thumbs.db

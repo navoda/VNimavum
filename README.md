@@ -31,19 +31,47 @@ Owner browser    ─────────────────────
 
 ## Repository layout
 
-Planned, not created yet:
+```
+backend/            Django project (API, admin, in-store checkout sync)
+  config/           Settings and URLs
+  catalog/ ...      One Django app per module (see docs/architecture.md)
+docs/               Architecture and data model
+docker-compose.yml  Local PostgreSQL
+```
 
-```
-backend/      Django project (API, admin, in-store checkout)
-storefront/   Next.js app for customers
-```
+Planned, not created yet: `owner-app/`, `storefront/`, `shared/ui`,
+`shared/api-client`.
 
 ## Status
 
-The project has just been set up and contains documentation only. No code has
-been written yet. Decisions still to be made are listed under "Open decisions"
-in [CLAUDE.md](CLAUDE.md).
+The backend has its database model and Django admin screens. There is no API,
+owner app or storefront yet. See [docs/architecture.md](docs/architecture.md)
+for the design and [CLAUDE.md](CLAUDE.md) for agreed decisions.
 
-## Getting started
+## Getting started (Windows, VS Code)
 
-Setup steps will be added here once the backend and storefront are scaffolded.
+You need [Python 3.13](https://www.python.org/downloads/),
+[Docker Desktop](https://www.docker.com/products/docker-desktop/) and VS Code.
+
+1. Open the repository folder in VS Code and install the recommended
+   extensions when asked.
+2. Start the database (from the repository folder):
+   ```
+   docker compose up -d
+   ```
+3. Set up Python (from the `backend` folder):
+   ```
+   py -3.13 -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py createsuperuser
+   ```
+4. In VS Code, open Run and Debug and start **Django: run server**. Then open
+   http://localhost:8000/admin/ and sign in with the user you just created.
+
+Run the tests with **Django: run tests** in Run and Debug, or
+`python manage.py test` from the `backend` folder.
+
+The database settings default to the values in `docker-compose.yml`. To change
+them, copy `backend/.env.example` to `backend/.env` and edit it.

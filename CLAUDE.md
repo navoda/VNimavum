@@ -83,6 +83,17 @@ Two parts:
   owner chooses available districts and sets an estimated delivery time.
   Order statuses: placed, paid, packed, shipped, collected, delivered,
   cancelled, refunded.
+- Data model follow-ups (2026-10-11): new `promotions` module. Each promotion
+  code works in store, online or both, as a percent or fixed amount. No manual
+  discounts at checkout; the owner applies a default promotion code instead.
+  SKU format VN-00001, printed as a Code 128 barcode. Subcategories use their
+  parent's sizes unless they define their own. In-store returns allowed: the
+  refund is a negative payment, and stock goes back up if resellable.
+  Estimated delivery time per district is a range of days. Field names as
+  drafted in the architecture doc.
+- Sewing jobs (customer brings their own material) are in-store service
+  orders, not products. A threaded owner inbox holds website chats. Details are
+  pending in the architecture doc (questions 24 to 31).
 
 ## Open decisions
 

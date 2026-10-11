@@ -21,12 +21,12 @@ The developer wants to be hands-on. **Do not take creative liberty.**
 VNimavum is a small shop selling mainly bedsheets and pillows, plus other items.
 It has an online store and a physical shop. Volume is under 100 orders a day.
 
-Three parts:
+Two parts:
 
 1. **Customer storefront**: online browsing and ordering.
-2. **Owner interface**: manage products, orders and physical stock.
-3. **In-store checkout**: the owner records sales made in the physical shop.
-   Online and in-store sales draw from the same stock.
+2. **Owner app**: manage products, orders and physical stock, including the
+   in-store cashier checkout. Only the owner uses it; customers never touch the
+   checkout. Online and in-store sales draw from the same stock.
 
 ## Agreed decisions
 
@@ -44,20 +44,30 @@ Three parts:
 - Database: PostgreSQL.
 - Both apps are hosted on one small server.
 - Planned folders: `backend/` for Django, `storefront/` for Next.js.
+- Online payments: Visa, Mastercard, bank transfer, PayPal.
+- In-store payments: cash, bank transfer with a reference, and a bank card
+  reader connected later. The owner app shows the day's cash total in the shop.
+- Product categories (curtains, cushions, candles, bedsheets, pillows, etc.)
+  define which variants a product has: size, colour or pattern, material.
+- Delivery within Sri Lanka with fees shown, plus in-store pickup. Keep the
+  design open to overseas delivery later.
+- Storefront supports both guest checkout and customer accounts.
+- Multiple currencies, converted using an online rate service.
+- English only for now. No tax for now.
+- Development: open and run in VS Code on localhost. Production hosting on a
+  private server later. Docker may be used if it is better for local hosting.
 
 ## Open decisions
 
 Ask about these before working on anything that depends on them:
 
-- Payment methods for online orders, and which payment provider.
-- Payment methods recorded for in-store sales (cash, card, other).
-- Product data: variants (size, colour, material), images, categories.
-- Delivery: areas, fees, and whether click-and-collect is offered.
-- Customer accounts or guest checkout only.
-- Currency, language(s) and tax rules.
+- Online card payment provider (gateway).
+- Which currency rate service to use.
 - Python, Django, Node and Next.js versions; package managers.
-- Hosting provider and deployment method.
-- Whether to use Docker for local development.
+- How Docker is used locally (database only, or everything).
+- Remaining owner app decisions in the architecture doc: overselling during an
+  outage, number of checkout devices, folder and module names, what works
+  offline.
 
 ## Conventions
 

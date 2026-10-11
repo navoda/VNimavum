@@ -6,9 +6,9 @@ bedsheets and pillows, along with other items.
 ## What it does
 
 - **Online storefront**: customers browse products and place orders.
-- **Owner interface**: the owner manages products, orders and physical stock.
-- **In-store checkout**: the owner records sales made in the physical shop, so
-  stock stays accurate across online and in-store sales.
+- **Owner app**: the owner manages products, orders and physical stock, and
+  uses its cashier checkout for sales in the physical shop. It is installed on
+  the shop's Windows PC and keeps working when the internet is down.
 
 Expected volume is under 100 orders a day, so the system is meant to stay simple
 and run on one small server.
